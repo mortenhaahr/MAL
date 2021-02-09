@@ -12,12 +12,20 @@ def L1(v):
 def l2_og(vector):
     s = 0
     for i in vector:
-        s += ((i ** 4) ** 0.5)
+        s += (i ** 2)
     return s ** 0.5
 
 def L2(v):
-    return np.sqrt(np.sum(np.fabs(np.array(v) ** 2)))
+    return np.sqrt(np.sum(np.array(v) ** 2))
 
 def L2Dot(v):
-    return np.sum(v.T * v)
+    s = np.dot(v, v)
+    return np.sqrt(s)
 
+def RMSE(h, y):
+    assert len(h) == len(y), "Must be same length"
+    return L2(h-y)
+
+def MAE(h, y):
+    assert len(h) == len(y), "Must be same length"
+    return L1(h-y)
