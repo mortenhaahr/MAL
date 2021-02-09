@@ -7,6 +7,9 @@ def l1_og(vector):
     return s
 
 def L1(v):
+    if isinstance(v, (list, np.array)):
+        raise TypeError('input must be list or np.array')
+        
     return np.sum(np.fabs(v))
 
 def l2_og(vector):
@@ -16,16 +19,25 @@ def l2_og(vector):
     return s ** 0.5
 
 def L2(v):
+    if isinstance(v, (list, np.array)):
+        raise TypeError('input must be list or np.array')
+
     return np.sqrt(np.sum(np.array(v) ** 2))
 
 def L2Dot(v):
+    if isinstance(v, (list, np.array)):
+        raise TypeError('input must be list or np.array')
     s = np.dot(v, v)
     return np.sqrt(s)
 
 def RMSE(h, y):
-    assert len(h) == len(y), "Must be same length"
-    return L2(h-y)
+    if len(h) != len(y):
+        raise ValueError('Vectors must be same length')
+
+    return L2(h-y) * np.sqrt(1 / len(h))
 
 def MAE(h, y):
-    assert len(h) == len(y), "Must be same length"
-    return L1(h-y)
+    if len(h) != len(y):
+        raise ValueError('Vectors must be same length')
+
+    return 1 / len(h) * L1(h-y)
