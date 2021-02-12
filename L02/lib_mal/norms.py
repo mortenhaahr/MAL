@@ -7,7 +7,7 @@ def l1_og(vector):
     return s
 
 def L1(v):
-    if isinstance(v, (list, np.array)):
+    if isinstance(v, (type(list), type(np.array))):
         raise TypeError('input must be list or np.array')
         
     return np.sum(np.fabs(v))
@@ -19,13 +19,13 @@ def l2_og(vector):
     return s ** 0.5
 
 def L2(v):
-    if isinstance(v, (list, np.array)):
+    if isinstance(v, (type(list), type(np.array))):
         raise TypeError('input must be list or np.array')
 
     return np.sqrt(np.sum(np.array(v) ** 2))
 
 def L2Dot(v):
-    if isinstance(v, (list, np.array)):
+    if isinstance(v, (type(list), type(np.array))):
         raise TypeError('input must be list or np.array')
     s = np.dot(v, v)
     return np.sqrt(s)
